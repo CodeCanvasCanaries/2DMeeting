@@ -2,7 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 const app = express();
 app.enable("trust proxy");
 const server = createServer(app);
@@ -13,13 +13,13 @@ const socketToRoom = {};
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomID) => {
+    socket.emit("yourId", socket.id);
     socket.join(roomID);
     socket.to(roomID).broadcast.emit("user-connected", socket.id);
 
     // If room exists add user to room
     if (users[roomID]) {
       users[roomID].push(socket.id);
-
       // Else, create a new room and add the user
     } else {
       users[roomID] = [socket.id];
@@ -34,14 +34,14 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     const roomID = socketToRoom[socket.id];
-
-    socket.to(roomId).broadcast.emit("user-disconnected", socket.id);
+    socket.to(roomID).broadcast.emit("user-disconnected", socket.id);
 
     let room = users[roomID];
     // Update the users in the room
     if (room) {
       room = room.filter((id) => id !== socket.id);
       users[roomID] = room;
+      ß;
     }
   });
 

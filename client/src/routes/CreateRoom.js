@@ -1,9 +1,9 @@
 import React from "react";
 import { v1 as uuid } from "uuid";
 
-const CreateRoom = (props) => {
+const CreateRoom = () => {
   const id = uuid();
-  props.history.push(`/room/${id}`);
+  window.history.push(`/room/${id}`);
   return <CreateRoom />;
 };
 
