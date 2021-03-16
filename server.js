@@ -10,11 +10,30 @@ const users = {};
 
 const socketToRoom = {};
 
+function randomCoordinates() {
+  const stageWidth = 1000;
+  const stageHeight = 1000;
+  const nodeWidth = 100;
+  const nodeHeight = 100;
+
+  // Generate a random x position.
+  let randomXPosition =
+    Math.floor(Math.random() * (stageWidth - nodeWidth)) + 1;
+
+  // Generate a random y position.
+  let randomYPosition =
+    Math.floor(Math.random() * (stageHeight - nodeHeight)) + 1;
+  const xString = randomXPosition + "px";
+  const yString = randomYPosition + "px";
+  return { x: xString, y: yString };
+}
+
 io.on("connection", (socket) => {
-  socket.on("join room", (roomID) => {
-    socket.emit("yourId", socket.id);
+  socket.on("join-room", (roomID) => {
+    const initialCoordinates = randomCoordinates();
+    const newPeer = { id: socket.id, coordinates: initialCoordinates };
+    socket.emit("your-welcome-package", newPeer);
     socket.join(roomID);
-    socket.to(roomID).broadcast.emit("user-connected", socket.id);
 
     // If room exists add user to room
     if (users[roomID]) {
@@ -24,23 +43,25 @@ io.on("connection", (socket) => {
       users[roomID] = [socket.id];
     }
     socketToRoom[socket.id] = roomID;
-    // Send the user all users who are already in the room
+    // Send the user existing-users who are already in the room
     const usersInThisRoom = users[roomID].filter((id) => id !== socket.id);
 
-    socket.emit("all users", usersInThisRoom);
+    socket.emit("existing-users", usersInThisRoom, initialCoordinates);
   });
 
-  socket.on("sending signal", (payload) => {
-    io.to(payload.userToSignal).emit("user joined", {
+  socket.on("stream-to-existing-users", (payload) => {
+    io.to(payload.existingUserID).emit("user-joined", {
       signal: payload.signal,
-      callerID: payload.callerID,
+      newUserID: payload.myID,
+      coordinates: payload.myCoordinates,
     });
   });
 
   socket.on("returning signal", (payload) => {
-    io.to(payload.callerID).emit("receiving returned signal", {
+    io.to(payload.newUserID).emit("receiving returned signal", {
       signal: payload.signal,
       id: socket.id,
+      coordinates: payload.myCoordinates,
     });
   });
 

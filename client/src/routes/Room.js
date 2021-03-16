@@ -42,19 +42,6 @@ const StyledNode = styled.div`
   left: ${(props) => props.left};
 `;
 
-const randomCoordinates = () => {
-  // Generate a random x position.
-  let randomXPosition =
-    Math.floor(Math.random() * (stageWidth - nodeWidth)) + 1;
-
-  // Generate a random y position.
-  let randomYPosition =
-    Math.floor(Math.random() * (stageHeight - nodeHeight)) + 1;
-  const xString = randomXPosition + "px";
-  const yString = randomYPosition + "px";
-  return { x: xString, y: yString };
-};
-
 const MyVideo = (props) => {
   const ref = useRef();
 
@@ -109,21 +96,25 @@ const Room = (props) => {
     socketRef.current = io.connect("/");
     navigator.mediaDevices
       .getUserMedia({ video: videoConstraints, audio: true })
-      .then((stream) => {
-        const coordinates = randomCoordinates();
-        socketRef.current.emit("join room", roomID);
-        socketRef.current.on("yourId", (id) => {
-          socketRef.current.emit(
-            "update-coordinates",
-            (coordinates.x, coordinates.y)
-          );
-          setPeer({ id: id, coordinates: coordinates, stream: stream });
+      .then((myStream) => {
+        socketRef.current.emit("join-room", roomID);
+        socketRef.current.on("your-welcome-package", (myWelcomePackage) => {
+          setPeer({
+            id: myWelcomePackage.id,
+            coordinates: myWelcomePackage.coordinates,
+            stream: myStream,
+          });
         });
 
-        socketRef.current.on("all users", (users) => {
+        socketRef.current.on("existing-users", (users, myCoordinates) => {
           const peers = [];
           users.forEach((userID) => {
-            const peer = createPeer(userID, socketRef.current.id, stream);
+            const peer = createMyPeer(
+              userID,
+              socketRef.current.id,
+              myStream,
+              myCoordinates
+            );
             peersRef.current.push({
               peerID: userID,
               peer,
@@ -133,25 +124,33 @@ const Room = (props) => {
           setPeers(peers);
         });
 
-        socketRef.current.on("user joined", (payload) => {
-          const peer = addPeer(payload.signal, payload.callerID, stream);
+        // When a user joins, create a peer instance for that user and store it locally
+        socketRef.current.on("user-joined", (payload) => {
+          const peer = addPeer(
+            payload.signal,
+            payload.newUserID,
+            myStream,
+            payload.coordinates
+          );
           peersRef.current.push({
-            peerID: payload.callerID,
+            peerID: payload.newUserID,
             peer,
           });
 
           setPeers((users) => [...users, peer]);
         });
 
+        // When Receiving video signal from a peer who is already in the room, attach the signal to the peer in peersRef
         socketRef.current.on("receiving returned signal", (payload) => {
           const item = peersRef.current.find((p) => p.peerID === payload.id);
           item.peer.signal(payload.signal);
+          //TODO
         });
 
         // socketRef.current.on("user-moved", (payload) => {
         //     const peer = updatePeerLoc(payload.x, payload.y, payload.socket.id);
         //     peersRef.current.push({
-        //       peerID: payload.callerID,
+        //       peerID: payload.newUserID,
         //       peer,
         //     });
 
@@ -160,33 +159,46 @@ const Room = (props) => {
       });
   }, []);
 
-  function createPeer(userToSignal, callerID, stream) {
+  // 1. EXISTING USERS IN THE ROOM
+  // Create an instance of my peer and send it to every user who is already in the room
+  function createMyPeer(existingUserID, myID, myStream, myCoordinates) {
     const peer = new Peer({
       initiator: true,
       trickle: false,
-      stream,
+      myStream,
     });
 
+    // When my peer object receives my stream, send it to the existing users in the room
     peer.on("signal", (signal) => {
-      socketRef.current.emit("sending signal", {
-        userToSignal,
-        callerID,
+      socketRef.current.emit("stream-to-existing-users", {
+        existingUserID,
+        myID,
         signal,
+        myCoordinates,
       });
     });
 
     return peer;
   }
 
-  function addPeer(incomingSignal, callerID, stream) {
+  // 2. NEW USERS WHO JOIN LATER
+  // When a new user joins, create an instance of my Peer and send it to them
+  function addPeer(incomingSignal, newUserID, myStream, newUserCoordinates) {
     const peer = new Peer({
       initiator: false,
       trickle: false,
-      stream,
+      //config: { coordinates: newUserCoordinates },
+      myStream,
     });
 
+    console.log("Peer config", peer.config.coordinates.x);
     peer.on("signal", (signal) => {
-      socketRef.current.emit("returning signal", { signal, callerID });
+      const myCoordinates = myPeer.coordinates;
+      socketRef.current.emit("returning signal", {
+        signal,
+        newUserID,
+        myCoordinates,
+      });
     });
 
     peer.signal(incomingSignal);

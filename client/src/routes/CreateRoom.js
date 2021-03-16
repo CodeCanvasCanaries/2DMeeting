@@ -1,9 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { v1 as uuid } from "uuid";
 
-const CreateRoom = (props) => {
+const CreateRoom = () => {
+  let history = useHistory();
   const id = uuid();
-  props.history.push(`/room/${id}`);
+  history.push(`/room/${id}`);
   return <CreateRoom />;
 };
 
