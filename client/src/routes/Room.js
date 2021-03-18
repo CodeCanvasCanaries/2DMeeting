@@ -42,6 +42,24 @@ const StyledNode = styled.div`
   left: ${(props) => props.left};
 `;
 
+function randomCoordinates() {
+  const stageWidth = 1000;
+  const stageHeight = 1000;
+  const nodeWidth = 100;
+  const nodeHeight = 100;
+
+  // Generate a random x position.
+  let randomXPosition =
+    Math.floor(Math.random() * (stageWidth - nodeWidth)) + 1;
+
+  // Generate a random y position.
+  let randomYPosition =
+    Math.floor(Math.random() * (stageHeight - nodeHeight)) + 1;
+  const xString = randomXPosition + "px";
+  const yString = randomYPosition + "px";
+  return { x: xString, y: yString };
+}
+
 const MyVideo = (props) => {
   const ref = useRef();
 
@@ -69,13 +87,21 @@ const Video = (props) => {
   const ref = useRef();
 
   useEffect(() => {
-    props.peer.on("stream", (stream) => {
+    props.peerObj.peer.on("stream", (stream) => {
       ref.current.srcObject = stream;
     });
   }, []);
 
   let Video = <StyledVideo playsInline autoPlay ref={ref} />;
-  let VideoNode = <StyledNode>{Video}</StyledNode>;
+  let VideoNode = (
+    <StyledNode
+      id={props.peerObj.peerID}
+      top={props.peerObj.peer.config.coordinates.y}
+      left={props.peerObj.peer.config.coordinates.x}
+    >
+      {Video}
+    </StyledNode>
+  );
   //VideoNode.addEventListener("mousedown", initialClick, false);
   return VideoNode;
 };
@@ -97,29 +123,35 @@ const Room = (props) => {
     navigator.mediaDevices
       .getUserMedia({ video: videoConstraints, audio: true })
       .then((myStream) => {
-        socketRef.current.emit("join-room", roomID);
+        const initialCoordinates = randomCoordinates();
+
+        socketRef.current.emit("join-room", { roomID, initialCoordinates });
         socketRef.current.on("your-welcome-package", (myWelcomePackage) => {
           setPeer({
             id: myWelcomePackage.id,
-            coordinates: myWelcomePackage.coordinates,
+            coordinates: initialCoordinates,
             stream: myStream,
           });
         });
 
-        socketRef.current.on("existing-users", (users, myCoordinates) => {
+        socketRef.current.on("existing-users", (users) => {
           const peers = [];
-          users.forEach((userID) => {
+          users.forEach((user) => {
             const peer = createMyPeer(
-              userID,
+              user.id,
               socketRef.current.id,
               myStream,
-              myCoordinates
+              user.coordinates,
+              initialCoordinates
             );
             peersRef.current.push({
-              peerID: userID,
+              peerID: user.id,
               peer,
             });
-            peers.push(peer);
+            peers.push({
+              peerID: user.id,
+              peer: peer,
+            });
           });
           setPeers(peers);
         });
@@ -137,7 +169,13 @@ const Room = (props) => {
             peer,
           });
 
-          setPeers((users) => [...users, peer]);
+          setPeers((users) => [
+            ...users,
+            {
+              peerID: payload.newUserID,
+              peer: peer,
+            },
+          ]);
         });
 
         // When Receiving video signal from a peer who is already in the room, attach the signal to the peer in peersRef
@@ -164,12 +202,18 @@ const Room = (props) => {
 
   // 1. EXISTING USERS IN THE ROOM
   // Create an instance of my peer and send it to every user who is already in the room
-  function createMyPeer(existingUserID, myID, myStream, myCoordinates) {
+  function createMyPeer(
+    existingUserID,
+    myID,
+    myStream,
+    existingUserCoordinates,
+    myCoordinates
+  ) {
     const peer = new Peer({
       initiator: true,
       trickle: false,
       myStream,
-      config: { coordinates: myCoordinates }, // Sending my coordinates to existing users
+      config: { coordinates: existingUserCoordinates }, // Existing user coordinates
     });
 
     // When my peer above is constructed, receive its signal and emit it to the existing users in the room
@@ -200,11 +244,10 @@ const Room = (props) => {
 
     // Triggered when signal port is opened below
     peer.on("signal", (signal) => {
-      const myCoordinates = myPeer.coordinates;
       socketRef.current.emit("returning-signal-to-new-users", {
         signal,
         newUserID,
-        myCoordinates, // Pass my coordinates to the new user
+        // myCoordinates, // Pass my coordinates to the new user
       });
     });
 
@@ -217,8 +260,8 @@ const Room = (props) => {
   return (
     <Container>
       {myPeer && <MyVideo peer={myPeer} />}
-      {peers.map((peer, index) => {
-        return <Video key={index} peer={peer} />;
+      {peers.map((peerObj, index) => {
+        return <Video key={index} peerObj={peerObj} />;
       })}
     </Container>
   );

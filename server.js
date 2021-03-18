@@ -10,43 +10,28 @@ const users = {};
 
 const socketToRoom = {};
 
-function randomCoordinates() {
-  const stageWidth = 1000;
-  const stageHeight = 1000;
-  const nodeWidth = 100;
-  const nodeHeight = 100;
-
-  // Generate a random x position.
-  let randomXPosition =
-    Math.floor(Math.random() * (stageWidth - nodeWidth)) + 1;
-
-  // Generate a random y position.
-  let randomYPosition =
-    Math.floor(Math.random() * (stageHeight - nodeHeight)) + 1;
-  const xString = randomXPosition + "px";
-  const yString = randomYPosition + "px";
-  return { x: xString, y: yString };
-}
-
 io.on("connection", (socket) => {
-  socket.on("join-room", (roomID) => {
-    const initialCoordinates = randomCoordinates();
+  socket.on("join-room", (payload) => {
+    const roomID = payload.roomID;
+    const initialCoordinates = payload.initialCoordinates;
     const newPeer = { id: socket.id, coordinates: initialCoordinates };
     socket.emit("your-welcome-package", newPeer);
-    socket.join(roomID);
+    //socket.join(roomID);
 
     // If room exists add user to room
     if (users[roomID]) {
-      users[roomID].push(socket.id);
+      users[roomID].push(newPeer);
       // Else, create a new room and add the user
     } else {
-      users[roomID] = [socket.id];
+      users[roomID] = [newPeer];
     }
     socketToRoom[socket.id] = roomID;
-    // Send the user existing-users who are already in the room
-    const usersInThisRoom = users[roomID].filter((id) => id !== socket.id);
+    // Send the user the existing users who are already in the room along with their coordinates
+    const usersInThisRoom = users[roomID].filter(
+      (user) => user.id !== socket.id
+    );
 
-    socket.emit("existing-users", usersInThisRoom, initialCoordinates);
+    socket.emit("existing-users", usersInThisRoom);
   });
 
   socket.on("stream-to-existing-users", (payload) => {
@@ -63,7 +48,7 @@ io.on("connection", (socket) => {
       {
         signal: payload.signal,
         id: socket.id,
-        coordinates: payload.myCoordinates, // Sending myCoordinates to the newly joined user
+        //  coordinates: payload.myCoordinates, // Sending myCoordinates to the newly joined user
       }
     );
   });
