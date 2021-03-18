@@ -6,7 +6,7 @@ const CreateRoom = () => {
   let history = useHistory();
   const id = uuid();
   history.push(`/room/${id}`);
-  return <CreateRoom />;
+  return null;
 };
 
 export default CreateRoom;

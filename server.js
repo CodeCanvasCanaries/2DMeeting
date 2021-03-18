@@ -53,16 +53,19 @@ io.on("connection", (socket) => {
     io.to(payload.existingUserID).emit("user-joined", {
       signal: payload.signal,
       newUserID: payload.myID,
-      coordinates: payload.myCoordinates,
+      coordinates: payload.myCoordinates, // Sending myCoordinates to the existing users
     });
   });
 
-  socket.on("returning signal", (payload) => {
-    io.to(payload.newUserID).emit("receiving returned signal", {
-      signal: payload.signal,
-      id: socket.id,
-      coordinates: payload.myCoordinates,
-    });
+  socket.on("returning-signal-to-new-users", (payload) => {
+    io.to(payload.newUserID).emit(
+      "receiving-returned-signal-from-existing-user",
+      {
+        signal: payload.signal,
+        id: socket.id,
+        coordinates: payload.myCoordinates, // Sending myCoordinates to the newly joined user
+      }
+    );
   });
 
   socket.on("disconnect", () => {

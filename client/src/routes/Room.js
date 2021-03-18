@@ -141,11 +141,14 @@ const Room = (props) => {
         });
 
         // When Receiving video signal from a peer who is already in the room, attach the signal to the peer in peersRef
-        socketRef.current.on("receiving returned signal", (payload) => {
-          const item = peersRef.current.find((p) => p.peerID === payload.id);
-          item.peer.signal(payload.signal);
-          //TODO
-        });
+        socketRef.current.on(
+          "receiving-returned-signal-from-existing-user",
+          (payload) => {
+            const item = peersRef.current.find((p) => p.peerID === payload.id);
+            item.peer.signal(payload.signal);
+            //TODO
+          }
+        );
 
         // socketRef.current.on("user-moved", (payload) => {
         //     const peer = updatePeerLoc(payload.x, payload.y, payload.socket.id);
@@ -166,9 +169,10 @@ const Room = (props) => {
       initiator: true,
       trickle: false,
       myStream,
+      config: { coordinates: myCoordinates }, // Sending my coordinates to existing users
     });
 
-    // When my peer object receives my stream, send it to the existing users in the room
+    // When my peer above is constructed, receive its signal and emit it to the existing users in the room
     peer.on("signal", (signal) => {
       socketRef.current.emit("stream-to-existing-users", {
         existingUserID,
@@ -184,23 +188,27 @@ const Room = (props) => {
   // 2. NEW USERS WHO JOIN LATER
   // When a new user joins, create an instance of my Peer and send it to them
   function addPeer(incomingSignal, newUserID, myStream, newUserCoordinates) {
+    // Creating an instance of my peer to communicate with the new user
     const peer = new Peer({
-      initiator: false,
+      initiator: false, // We are not initiating the signal in this case, we are waiting for it from the new user
       trickle: false,
-      //config: { coordinates: newUserCoordinates },
+      config: { coordinates: newUserCoordinates },
       myStream,
     });
 
     console.log("Peer config", peer.config.coordinates.x);
+
+    // Triggered when signal port is opened below
     peer.on("signal", (signal) => {
       const myCoordinates = myPeer.coordinates;
-      socketRef.current.emit("returning signal", {
+      socketRef.current.emit("returning-signal-to-new-users", {
         signal,
         newUserID,
-        myCoordinates,
+        myCoordinates, // Pass my coordinates to the new user
       });
     });
 
+    // Opens a port to receive incoming signal
     peer.signal(incomingSignal);
 
     return peer;
