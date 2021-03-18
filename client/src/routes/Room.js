@@ -60,6 +60,28 @@ function randomCoordinates() {
   return { x: xString, y: yString };
 }
 
+// function initialClick(e) {
+//   if (moving) {
+//     document.removeEventListener("mousemove", move);
+//     moving = !moving;
+//     return;
+//   }
+
+//   moving = !moving;
+//   image = this;
+//   document.addEventListener("mousemove", move, false);
+// }
+
+// function move(e, socket) {
+//   var newX = e.clientX - 10;
+//   var newY = e.clientY - 10;
+
+//   image.style.left = newX + "px";
+//   image.style.top = newY + "px";
+
+//   socket.emit("update-coordinates", image.style.left, image.style.top, myId);
+// }
+
 const MyVideo = (props) => {
   const ref = useRef();
 
@@ -79,7 +101,6 @@ const MyVideo = (props) => {
       {Video}
     </StyledNode>
   );
-  //VideoNode.addEventListener("mousedown", initialClick, false);
   return VideoNode;
 };
 
@@ -90,7 +111,7 @@ const Video = (props) => {
     props.peerObj.peer.on("stream", (stream) => {
       ref.current.srcObject = stream;
     });
-  }, []);
+  }, [props]);
 
   let Video = <StyledVideo playsInline autoPlay ref={ref} />;
   let VideoNode = (
@@ -102,7 +123,6 @@ const Video = (props) => {
       {Video}
     </StyledNode>
   );
-  //VideoNode.addEventListener("mousedown", initialClick, false);
   return VideoNode;
 };
 
@@ -212,7 +232,7 @@ const Room = (props) => {
     const peer = new Peer({
       initiator: true,
       trickle: false,
-      myStream,
+      stream: myStream,
       config: { coordinates: existingUserCoordinates }, // Existing user coordinates
     });
 
@@ -237,7 +257,7 @@ const Room = (props) => {
       initiator: false, // We are not initiating the signal in this case, we are waiting for it from the new user
       trickle: false,
       config: { coordinates: newUserCoordinates },
-      myStream,
+      stream: myStream,
     });
 
     console.log("Peer config", peer.config.coordinates.x);
@@ -257,11 +277,14 @@ const Room = (props) => {
     return peer;
   }
 
+  let MyNode = <MyVideo peer={myPeer} />;
+  //MyNode.addEventListener("mousedown", initialClick, false);
+
   return (
     <Container>
-      {myPeer && <MyVideo peer={myPeer} />}
-      {peers.map((peerObj, index) => {
-        return <Video key={index} peerObj={peerObj} />;
+      {myPeer && MyNode}
+      {peers.map((peerObj) => {
+        return <Video peerObj={peerObj} />;
       })}
     </Container>
   );
