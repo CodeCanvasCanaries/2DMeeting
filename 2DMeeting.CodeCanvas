@@ -1,1 +1,13 @@
-{"drawioXML":"<mxfile>\n  <diagram id=\"UbrdiJHJPbrdnAx_NLsY\" name=\"Page-1\">\n    <mxGraphModel dx=\"1385\" dy=\"929\" grid=\"0\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"0\" pageScale=\"1\" pageWidth=\"850\" pageHeight=\"1100\" math=\"0\" shadow=\"0\">\n      <root>\n        <mxCell id=\"0\"/>\n        <mxCell id=\"1\" parent=\"0\"/>\n        <mxCell id=\"YvI7jheJ_PQcjyfDBWnh-1\" value=\"2DMeeting Remote\" style=\"whiteSpace=wrap;html=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"75\" y=\"94\" width=\"120\" height=\"60\" as=\"geometry\"/>\n        </mxCell>\n      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>","fileName":"2DMeeting.CodeCanvas","fileURL":"https://raw.githubusercontent.com/Abdulnaser97/2DMeeting/main/2DMeeting.CodeCanvas","repoData":{"LICENSE":{"wiki":"<p>License wiki test</p>"},"2DMeeting":{"wiki":"<p>Test wiki remote</p>"}}}
+{
+	"drawioXML": "<mxfile>\n  <diagram id=\"UbrdiJHJPbrdnAx_NLsY\" name=\"Page-1\">\n    <mxGraphModel dx=\"1385\" dy=\"929\" grid=\"0\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"0\" pageScale=\"1\" pageWidth=\"850\" pageHeight=\"1100\" math=\"0\" shadow=\"0\">\n      <root>\n        <mxCell id=\"0\"/>\n        <mxCell id=\"1\" parent=\"0\"/>\n        <mxCell id=\"YvI7jheJ_PQcjyfDBWnh-1\" value=\"2DMeeting Remote\" style=\"whiteSpace=wrap;html=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"75\" y=\"94\" width=\"120\" height=\"60\" as=\"geometry\"/>\n        </mxCell>\n      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>",
+	"fileName": "2DMeeting.CodeCanvas",
+	"fileURL": "https://raw.githubusercontent.com/Abdulnaser97/2DMeeting/main/2DMeeting.CodeCanvas",
+	"repoData": {
+		"LICENSE": {
+			"wiki": "<p>License wiki test</p>"
+		},
+		"2DMeeting": {
+			"wiki": "<p>Test wiki remote</p>"
+		}
+	}
+}
