@@ -4,7 +4,10 @@
 	"fileURL": "",
 	"repoData": {
 		"LICENSE": {
-			"wiki": "<p>test wiki license remote</p>"
+			"wiki": "<p>test wiki license remote new stuff</p>"
+		},
+		"server.js": {
+			"wiki": "<p>new server stuff</p>"
 		},
 		"2DMeeting": {
 			"wiki": "<p>Test wiki remote</p>"
