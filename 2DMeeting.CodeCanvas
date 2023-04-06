@@ -1,7 +1,7 @@
 {
 	"drawioXML": "<mxfile>\n  <diagram id=\"8dWkBIj0Of0zVVGOFnZc\" name=\"Page-1\">\n    <mxGraphModel dx=\"2625\" dy=\"929\" grid=\"0\" gridSize=\"10\" guides=\"1\" tooltips=\"1\" connect=\"1\" arrows=\"1\" fold=\"1\" page=\"0\" pageScale=\"1\" pageWidth=\"850\" pageHeight=\"1100\" math=\"0\" shadow=\"0\">\n      <root>\n        <mxCell id=\"0\" />\n        <mxCell id=\"1\" style=\"shadow=0;\" parent=\"0\" />\n        <mxCell id=\"dhz6Bbjubv8w9S6ThQ73-3\" style=\"edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;sketch=0;jumpStyle=arc;jumpSize=17;orthogonalLoop=1;jettySize=auto;html=0;shadow=0;labelBackgroundColor=none;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontSize=37;fontColor=default;endArrow=block;endFill=1;endSize=5;sourcePerimeterSpacing=23;targetPerimeterSpacing=15;strokeColor=#A1A1A1;strokeWidth=2;arcSize=50;\" parent=\"1\" source=\"dhz6Bbjubv8w9S6ThQ73-1\" target=\"dhz6Bbjubv8w9S6ThQ73-2\" edge=\"1\">\n          <mxGeometry relative=\"1\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"dhz6Bbjubv8w9S6ThQ73-1\" value=\"H3 - functionName()\" style=\"rounded=1;whiteSpace=wrap;html=1;strokeColor=#64B2D3;strokeWidth=0.25;fillColor=#64B2D3;shadow=0;glass=0;snapToPoint=1;arcSize=50;fontSize=11;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontColor=#FFFFFF;fontStyle=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"-334\" y=\"563\" width=\"199\" height=\"45\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"dhz6Bbjubv8w9S6ThQ73-2\" value=\"H3 - className()\" style=\"rounded=1;whiteSpace=wrap;html=1;strokeColor=none;strokeWidth=0.25;fillColor=#46B4AD;shadow=0;glass=0;snapToPoint=1;arcSize=50;fontSize=11;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontColor=#FFFFFF;fontStyle=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"-404\" y=\"917\" width=\"199\" height=\"45\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"mmJ88lIXDcNomZN8TzEQ-1\" style=\"edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;sketch=0;jumpStyle=arc;jumpSize=17;orthogonalLoop=1;jettySize=auto;html=0;shadow=0;labelBackgroundColor=none;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontSize=37;fontColor=default;endArrow=block;endFill=1;endSize=5;sourcePerimeterSpacing=23;targetPerimeterSpacing=15;strokeColor=#A1A1A1;strokeWidth=2;arcSize=50;\" parent=\"1\" source=\"mmJ88lIXDcNomZN8TzEQ-2\" target=\"mmJ88lIXDcNomZN8TzEQ-3\" edge=\"1\">\n          <mxGeometry relative=\"1\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"mmJ88lIXDcNomZN8TzEQ-2\" value=\"H3 - functionName()\" style=\"rounded=1;whiteSpace=wrap;html=1;strokeColor=#64B2D3;strokeWidth=0.25;fillColor=#64B2D3;shadow=0;glass=0;snapToPoint=1;arcSize=50;fontSize=11;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontColor=#FFFFFF;fontStyle=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"-903\" y=\"1041\" width=\"199\" height=\"45\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"mmJ88lIXDcNomZN8TzEQ-3\" value=\"H3 - className()\" style=\"rounded=1;whiteSpace=wrap;html=1;strokeColor=none;strokeWidth=0.25;fillColor=#46B4AD;shadow=0;glass=0;snapToPoint=1;arcSize=50;fontSize=11;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontColor=#FFFFFF;fontStyle=1;\" parent=\"1\" vertex=\"1\">\n          <mxGeometry x=\"-1030\" y=\"1497\" width=\"199\" height=\"45\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"tIoHAnKfNtyWZV3SUOEZ-1\" value=\"\" style=\"group;shadow=0;\" parent=\"1\" vertex=\"1\" connectable=\"0\">\n          <mxGeometry x=\"-325.99999999999994\" y=\"247\" width=\"239.17\" height=\"169.78999999999996\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"Y2Mm-2fWzhene9e5M7yh-2\" value=\"&lt;font style=&quot;font-size: 6px&quot;&gt;H3 - functionName-collapsed()&lt;/font&gt;\" style=\"shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;shadow=0;glass=0;strokeColor=#64B2D3;strokeWidth=1.3;fillColor=#64B2D3;size=2.1944444444445423;rounded=1;arcSize=11;fontSize=6;verticalAlign=middle;spacing=2;spacingTop=0;spacingBottom=6;fontFamily=Poppins;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins;fontStyle=1;fontColor=#FFFFFF;\" parent=\"tIoHAnKfNtyWZV3SUOEZ-1\" vertex=\"1\">\n          <mxGeometry x=\"12\" width=\"132.43\" height=\"22\" as=\"geometry\" />\n        </mxCell>\n        <mxCell id=\"Y2Mm-2fWzhene9e5M7yh-3\" value=\"\" style=\"rounded=1;whiteSpace=wrap;html=1;strokeColor=#64B2D3;strokeWidth=0.6;fillColor=#FFFFFF;shadow=0;glass=0;snapToPoint=1;arcSize=7;\" parent=\"tIoHAnKfNtyWZV3SUOEZ-1\" vertex=\"1\">\n          <mxGeometry y=\"17\" width=\"239.17\" height=\"152.79\" as=\"geometry\" />\n        </mxCell>\n      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>\n",
 	"fileName": "2DMeeting.CodeCanvas",
-	"fileURL": "https://raw.githubusercontent.com/Abdulnaser97/2DMeeting/59cd4b05a9975004fe8dfb86967791a3c34a1996/2DMeeting.CodeCanvas",
+	"fileURL": "https://raw.githubusercontent.com/Abdulnaser97/2DMeeting/81d14fca1af184044cb4c179d12ae7b7d1f429e7/2DMeeting.CodeCanvas",
 	"repoData": {
 		"mYjQRnURfRZoUIXYQiXO-1": {
 			"path": "mYjQRnURfRZoUIXYQiXO-1",
@@ -28,7 +28,7 @@
 		"mmJ88lIXDcNomZN8TzEQ-1": {
 			"path": "mmJ88lIXDcNomZN8TzEQ-1",
 			"cellId": "mmJ88lIXDcNomZN8TzEQ-1",
-			"visible": true
+			"visible": false
 		},
 		"mmJ88lIXDcNomZN8TzEQ-2": {
 			"path": "mmJ88lIXDcNomZN8TzEQ-2",
@@ -53,7 +53,7 @@
 		"tIoHAnKfNtyWZV3SUOEZ-1": {
 			"path": "tIoHAnKfNtyWZV3SUOEZ-1",
 			"cellId": "tIoHAnKfNtyWZV3SUOEZ-1",
-			"visible": true
+			"visible": false
 		}
 	},
 	"simulations": {
@@ -68,6 +68,13 @@
 					"isEdge": false
 				},
 				{
+					"simStepId": "dabea266-67f2-4b94-b5ca-c6395334320f",
+					"diagramNodeId": "mmJ88lIXDcNomZN8TzEQ-1",
+					"simStepLabel": "",
+					"simStepDescription": "",
+					"isEdge": 1
+				},
+				{
 					"simStepId": "2c52b772-52d1-4566-9dee-578cf2972b3d",
 					"diagramNodeId": "mmJ88lIXDcNomZN8TzEQ-3",
 					"simStepLabel": "H3 - className()",
@@ -80,13 +87,6 @@
 					"simStepLabel": "H3 - functionName()",
 					"simStepDescription": "",
 					"isEdge": false
-				},
-				{
-					"simStepId": "dabea266-67f2-4b94-b5ca-c6395334320f",
-					"diagramNodeId": "mmJ88lIXDcNomZN8TzEQ-1",
-					"simStepLabel": "",
-					"simStepDescription": "",
-					"isEdge": 1
 				}
 			],
 			"simulationNodesAndEdges": {
@@ -103,7 +103,7 @@
 					]
 				},
 				"mmJ88lIXDcNomZN8TzEQ-1": {
-					"elementVisibleWhenNotInSimulation": true,
+					"elementVisibleWhenNotInSimulation": false,
 					"simStepIds": [
 						"dabea266-67f2-4b94-b5ca-c6395334320f"
 					]
@@ -141,13 +141,6 @@
 					"isEdge": false
 				},
 				{
-					"simStepId": "6799d606-ec28-4234-bea0-29aec3796626",
-					"diagramNodeId": "mmJ88lIXDcNomZN8TzEQ-2",
-					"simStepLabel": "H3 - functionName()",
-					"simStepDescription": "",
-					"isEdge": false
-				},
-				{
 					"simStepId": "bc3aee11-648f-434c-bd34-b55c8149075e",
 					"diagramNodeId": "tIoHAnKfNtyWZV3SUOEZ-1",
 					"simStepLabel": "bc3aee11-648f-434c-bd34-b55c8149075e",
@@ -174,14 +167,8 @@
 						"a7203638-e2c1-4b9e-abd4-6ffaa01fb4aa"
 					]
 				},
-				"mmJ88lIXDcNomZN8TzEQ-2": {
-					"elementVisibleWhenNotInSimulation": true,
-					"simStepIds": [
-						"6799d606-ec28-4234-bea0-29aec3796626"
-					]
-				},
 				"tIoHAnKfNtyWZV3SUOEZ-1": {
-					"elementVisibleWhenNotInSimulation": true,
+					"elementVisibleWhenNotInSimulation": false,
 					"simStepIds": [
 						"bc3aee11-648f-434c-bd34-b55c8149075e"
 					]
