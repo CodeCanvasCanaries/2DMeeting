@@ -22,6 +22,15 @@ You can find the React documentation [on the website](https://react.dev/).
 
 Check out the [Getting Started](https://react.dev/learn) page for a quick overview.
 
+
+### How does `2DMeeting` work?
+
+Check out this interactive walkthrough of the `2DMeeting` codebase on CodeCanvas [here](https://www.code-canvas.com/?session=unauthenticatedGithub&repo=2DMeeting&owner=Abdulnaser97&branch=main&OnboardingTutorial=true).
+
+To update the diagram, follow the quick tutorial [here](https://docs.code-canvas.com/updating-diagram).
+
+<img width="1916" alt="CodeCanvas Screenshot" src="https://codecanvas-media-public.s3.amazonaws.com/images/codecanvas-readme-screenshot.png" />
+
 The documentation is divided into several sections:
 
 * [Quick Start](https://react.dev/learn)
