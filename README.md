@@ -59,6 +59,15 @@ You'll notice that we used an HTML-like syntax; [we call it JSX](https://react.d
 
 ## Contributing
 
+### How does `2DMeeting` work?
+
+Check out this interactive walkthrough of the `2DMeeting` codebase on CodeCanvas [here](https://www.code-canvas.com/?session=unauthenticatedGithub&repo=2DMeeting&owner=Abdulnaser97&branch=main&OnboardingTutorial=true).
+
+To update the diagram, follow the quick tutorial [here](https://docs.code-canvas.com/updating-diagram).
+
+<img width="1916" alt="CodeCanvas Screenshot" src="https://codecanvas-media-public.s3.amazonaws.com/images/codecanvas-readme-screenshot.png" />
+
+
 The main purpose of this repository is to continue evolving React core, making it faster and easier to use. Development of React happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving React.
 
 ### [Code of Conduct](https://code.fb.com/codeofconduct)
