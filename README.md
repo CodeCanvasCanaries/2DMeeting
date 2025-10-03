@@ -73,6 +73,15 @@ Read our [contributing guide](https://legacy.reactjs.org/docs/how-to-contribute.
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/facebook/react/labels/good%20first%20issue) that contain bugs that have a relatively limited scope. This is a great place to get started
 
+### How does `2DMeeting` work?
+
+Check out this interactive walkthrough of the `2DMeeting` codebase on CodeCanvas [here](https://www.code-canvas.com/?session=unauthenticatedGithub&repo=2DMeeting&owner=Abdulnaser97&branch=main&OnboardingTutorial=true).
+
+To update the diagram, follow the quick tutorial [here](https://docs.code-canvas.com/updating-diagram).
+
+<img width="1916" alt="CodeCanvas Screenshot" src="https://codecanvas-media-public.s3.amazonaws.com/images/codecanvas-readme-screenshot.png" />
+
+
 ### License
 
 React is [MIT licensed](./LICENSE).
